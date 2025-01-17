@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : Movement
 {
+    public int xpValue = 1;
+
     public float triggerLength = 1;
     public float chaseLenght = 5;
     private bool chasing;
@@ -63,6 +65,11 @@ public class Enemy : Movement
 
             hits[i] = null;
         }
+    }
+    protected override void Death()
+    {
+        Destroy(gameObject);
+        GameManager.instance.GrantXp(xpValue);
     }
 }
 

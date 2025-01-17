@@ -8,6 +8,11 @@ public class FollowPlayer : MonoBehaviour
     public float boundX = 0.15f;
     public float boundY = 0.15f;
 
+    private void Start()
+    {
+        follow = GameObject.Find("Protagonist").transform;
+    }
+
     // Update is called once per frame
     void LateUpdate()
     {

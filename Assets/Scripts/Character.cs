@@ -13,5 +13,25 @@ public class Character : MonoBehaviour
 
     protected Vector3 pushDirection;
 
-    //Implementar funciones para sistema de damage y muerte.
+    protected virtual void ReceiveDamage(Damage dmg)
+    {
+        if(Time.time - lastImmune > immunity)
+        {
+            lastImmune = Time.time;
+            hitpoint -= dmg.damageAmount;
+            pushDirection = (transform.position - dmg.origin).normalized * dmg.pushForce;
+
+
+            if(hitpoint <= 0)
+            {
+                hitpoint = 0;
+                Death();
+            }
+        }
+    }
+
+    protected virtual void Death()
+    {
+
+    }
 }

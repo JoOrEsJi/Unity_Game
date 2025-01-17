@@ -28,6 +28,9 @@ public abstract class Movement : Character
         else if (moveDelta.x < 0)
             transform.localScale = new Vector3(-1, 1, 1);
 
+        moveDelta += pushDirection;
+        pushDirection = Vector3.Lerp(pushDirection, Vector3.zero, pushRecoverySpeed);
+
         //Si el boxcollider no da permiso, el jugador no puede pasar por ahí
         hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, new Vector2(0, moveDelta.y), Mathf.Abs(moveDelta.y * Time.deltaTime), LayerMask.GetMask("Characters", "Blocking"));
         if (hit.collider == null)

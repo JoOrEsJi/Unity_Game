@@ -11,11 +11,12 @@ public class Chest : Collectable
     {
         if (!collected)
         {
-            collected = true;
+            collected = true; 
             GetComponent<SpriteRenderer>().sprite = emptyChest;
+            GameManager.instance.coins += coins;
             Debug.Log("Dropped " + coins + " coins!");
             
-            //GameManager.instance.ShowText("+" + coins + " coins", 25, Color.yellow, transform.position, Vector3.up * 50, 3.0f   );
+            GameManager.instance.ShowText("+" + coins + " coins", 25, Color.yellow, transform.position, Vector3.up * 50, 3.0f   );
         }
 
     }
