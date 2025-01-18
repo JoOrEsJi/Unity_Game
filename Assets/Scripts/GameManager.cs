@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
         }
 
         instance = this;
+        protagonist = FindObjectOfType<Protagonist>();
         SceneManager.sceneLoaded += LoadState;
         DontDestroyOnLoad(gameObject);
     }
@@ -37,17 +38,22 @@ public class GameManager : MonoBehaviour
         floatingTextManager.Show(msg, fontSize, color, position, motion, duration);
     }
 
+    private void Update()
+    {
+        Debug.Log(GetCurrentLevel());
+    }
+
     public int GetCurrentLevel()
     {
         int r = 0;
         int add = 0;
 
-        while(experience >= add)
+        while (experience >= add)   
         {
             add += xpTable[r];
             r++;
 
-            if(r==xpTable.Count)
+            if (r == xpTable.Count)
                 return r;
         }
 
@@ -75,6 +81,7 @@ public class GameManager : MonoBehaviour
         {
             OnLevelUp();
         }
+        FindObjectOfType<PauseMenu>()?.UpdateMenu();
     }
 
     public void OnLevelUp()
@@ -103,7 +110,15 @@ public class GameManager : MonoBehaviour
 
         coins = int.Parse(data[1]);
         experience = int.Parse(data[2]);
-        protagonist.SetLevel(GetCurrentLevel());
+        protagonist = FindObjectOfType<Protagonist>();
+        if (protagonist == null)
+        {
+            Debug.LogError("Protagonist no encontrado en la escena.");
+            return;
+        }
+
+        if(GetCurrentLevel() != 1)
+            protagonist.SetLevel(GetCurrentLevel());
 
         Debug.Log("Load state");
     }

@@ -21,17 +21,12 @@ public class Weapon : Collidable
         animation = GetComponent<Animator>();
     }
 
-    protected override void Update()
+    public void OnSwingButtonPressed()
     {
-        base.Update();
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Time.time - lastSwing > cooldown)
         {
-            if(Time.time - lastSwing > cooldown)
-            {
-                lastSwing = Time.time;
-                Swing();
-            }
+            lastSwing = Time.time;
+            Swing();
         }
     }
 

@@ -20,7 +20,7 @@ public class Enemy : Movement
     protected override void Start()
     {
         base.Start();
-        protaTransform = GameManager.instance.protagonist.transform;
+        protaTransform = GameObject.Find("Protagonist").transform;
         startingPoint = transform.position;
         boxCollider = GetComponent<BoxCollider2D>();
     }
@@ -70,6 +70,7 @@ public class Enemy : Movement
     {
         Destroy(gameObject);
         GameManager.instance.GrantXp(xpValue);
+        GameManager.instance.ShowText("+" + xpValue + " xp", 30, Color.magenta, Camera.main.WorldToScreenPoint(transform.position), Vector3.up * 30, 1.0f);
     }
 }
 

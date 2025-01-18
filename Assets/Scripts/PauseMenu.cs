@@ -11,14 +11,14 @@ public class PauseMenu : MonoBehaviour
 
     public void UpdateMenu()
     {
-        hitpointText.text = GameManager.instance.protagonist.hitpoint.ToString();
+        hitpointText.text = GameManager.instance.protagonist.hitpoint.ToString(); 
         coinsText.text = GameManager.instance.coins.ToString();
         levelText.text = GameManager.instance.GetCurrentLevel().ToString();
 
         int currLevel = GameManager.instance.GetCurrentLevel();
         if(currLevel == GameManager.instance.xpTable.Count)
         {
-            xpText.text = GameManager.instance.experience.ToString() + "total experience points";
+            xpText.text = GameManager.instance.experience.ToString() + " total experience points";
             xpBar.localScale = Vector3.one;
         }
         else

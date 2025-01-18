@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class FloatingText
 {
     public bool active;
     public GameObject go;
-    public Text txt;
+    public TextMeshProUGUI txt;
     public Vector3 motion;
     public float duration;
     public float lastShown;

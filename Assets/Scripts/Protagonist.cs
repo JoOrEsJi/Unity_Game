@@ -4,15 +4,6 @@ using UnityEngine;
 
 public class Protagonist : Movement
 {
-    private SpriteRenderer spriteRenderer;
-
-    protected override void Start()
-    {
-        base.Start();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-
-        DontDestroyOnLoad(gameObject);
-    }
 
     private void FixedUpdate()
     {
@@ -34,5 +25,20 @@ public class Protagonist : Movement
         {
             OnLevelUp();
         }
+    }
+
+    public void Heal(int healingAmount)
+    {
+        hitpoint += healingAmount;
+        if (hitpoint == maxHitpoint)
+        {
+            return;
+        }
+        hitpoint += healingAmount;
+        if (hitpoint > maxHitpoint)
+        {
+            hitpoint = maxHitpoint;
+            GameManager.instance.ShowText("+" + healingAmount.ToString() + "hp", 25, Color.green, transform.position, Vector3.up * 30, 1.0f);
+        }    
     }
 }

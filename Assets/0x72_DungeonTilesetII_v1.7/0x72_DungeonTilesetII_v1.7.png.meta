@@ -461,7 +461,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -469,6 +469,27 @@ TextureImporter:
       bones: []
       spriteID: aab898516522ace448159ce4af5358b1
       internalID: -1104057446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crate
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 81
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a12cd9e7ed9004468c21631de7e14be
+      internalID: -1445235654
       vertices: []
       indices: 
       edges: []
@@ -492,6 +513,7 @@ TextureImporter:
       0x72_DungeonTilesetII_v1.7_5: -393971590
       0x72_DungeonTilesetII_v1.7_6: -1984829505
       Button: -1104057446
+      Crate: -1445235654
       Sword: 358321439
       run1: -1321447885
       run2: 1588773413
