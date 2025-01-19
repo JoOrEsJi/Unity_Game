@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 0x72_DungeonTilesetII_v1.7_0
+      name: boss1
       rect:
         serializedVersion: 2
         x: 245
@@ -482,7 +482,7 @@ TextureImporter:
         width: 14
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -490,6 +490,216 @@ TextureImporter:
       bones: []
       spriteID: 6a12cd9e7ed9004468c21631de7e14be
       internalID: -1445235654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss4
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 48
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1171d3c6662faf3478a628a079157e63
+      internalID: -1605530353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss3
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 48
+        width: 24
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c84b9efb4e9a1704ca60c74937cff05a
+      internalID: 1847776983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss2
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 48
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c8f14ade350484418ebe7c548b7ee85
+      internalID: 11169124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 48
+        width: 24
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10d59c840b39867499874d55bb073040
+      internalID: 703823803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SBoss
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 96
+        width: 22
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b8e74a61aa0ef14dac87cca8fbd66e4
+      internalID: -848846200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SBoss1
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 96
+        width: 22
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb67ec2db2ee43e4c8152503d3b0cc4b
+      internalID: 1970383196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SBoss2
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 96
+        width: 24
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37a343c658b002545b366b80e1efeefd
+      internalID: -1250688755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SBoss3
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 96
+        width: 22
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 826222bb362312549be4fdf8070e19c3
+      internalID: -985086418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bomb
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 177
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9287cb439ad97704a809a25f86a53ee3
+      internalID: -714651482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Axe
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 321
+        width: 18
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ceaaccd9714e0cc4d9943ab2e0d8f1c7
+      internalID: 1416850500
       vertices: []
       indices: 
       edges: []
@@ -505,16 +715,28 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      0x72_DungeonTilesetII_v1.7_0: -925118324
       0x72_DungeonTilesetII_v1.7_1: -1266838654
+      0x72_DungeonTilesetII_v1.7_10: 1695182729
       0x72_DungeonTilesetII_v1.7_2: -1726920089
       0x72_DungeonTilesetII_v1.7_3: 1052672585
       0x72_DungeonTilesetII_v1.7_4: -1209101120
       0x72_DungeonTilesetII_v1.7_5: -393971590
       0x72_DungeonTilesetII_v1.7_6: -1984829505
+      Axe: -218860168
+      Bomb: -714651482
+      Boss: 103716248
       Button: -1104057446
       Crate: -1445235654
+      SBoss: -848846200
+      SBoss1: 1970383196
+      SBoss2: -136458193
+      SBoss3: 2019385232
       Sword: 358321439
+      boss: 703823803
+      boss1: -925118324
+      boss2: 11169124
+      boss3: 1847776983
+      boss4: -1605530353
       run1: -1321447885
       run2: 1588773413
       run3: 1715022496

@@ -2,24 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    private void Awake()
-    {
-        if(GameManager.instance != null)
-        {
-            Destroy(gameObject);
-            return;
-
-        }
-
-        instance = this;
-        protagonist = FindObjectOfType<Protagonist>();
-        SceneManager.sceneLoaded += LoadState;
-        DontDestroyOnLoad(gameObject);
-    }
 
     public List<Sprite> playerSprites;
     public List<Sprite> weaponSprites;
@@ -27,20 +14,112 @@ public class GameManager : MonoBehaviour
     public List<int> xpTable;
 
     public Protagonist protagonist;
-
     public FloatingTextManager floatingTextManager;
+    public Animator deathMenuAnimation;
 
     public int coins;
     public int experience;
 
-    public void ShowText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration)
+    private void Awake()
     {
-        floatingTextManager.Show(msg, fontSize, color, position, motion, duration);
+        if (GameManager.instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        protagonist = FindObjectOfType<Protagonist>();
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void Update()
+    private void OnDestroy()    
     {
-        Debug.Log(GetCurrentLevel());
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        GameObject hud = GameObject.Find("HUD");
+        if (hud != null)
+        {
+            Transform panelTransform = hud.transform.Find("Panel");
+            if (panelTransform != null)
+            {
+                deathMenuAnimation = panelTransform.GetComponent<Animator>();
+                if (deathMenuAnimation != null)
+                {
+                    Debug.Log("Animator del Panel asignado correctamente.");
+                }
+                else
+                {
+                    Debug.LogWarning("El Panel no tiene un componente Animator.");
+                }
+
+                Transform deathMenuTransform = panelTransform.Find("DeathMenu");
+                if (deathMenuTransform != null)
+                {
+                    Transform respawnButtonTransform = deathMenuTransform.Find("Respawn");
+                    if (respawnButtonTransform != null)
+                    {
+                        Button respawnButton = respawnButtonTransform.GetComponent<Button>();
+                        if (respawnButton != null)
+                        {
+                            respawnButton.onClick.RemoveAllListeners();
+
+                            respawnButton.onClick.AddListener(() => Respawn());
+                            Debug.Log("Función Respawn asignada al botón.");
+                        }
+                        else
+                        {
+                            Debug.LogWarning("El objeto Respawn no tiene un componente Button.");
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogWarning("No se encontró el objeto Respawn dentro del DeathMenu.");
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("No se encontró el objeto DeathMenu dentro del Panel.");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("No se encontró el objeto 'Panel' dentro del HUD.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No se encontró el objeto 'HUD' en la escena.");
+        }
+        protagonist = FindObjectOfType<Protagonist>();
+        if (protagonist == null)
+        {
+            Debug.LogError("Protagonist no encontrado en la escena.");
+        }
+    }
+
+    public void Respawn()
+    {
+        deathMenuAnimation.SetTrigger("Hiding");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Lobby");
+    }
+
+    public void ShowText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration)
+    {
+        if (floatingTextManager != null)
+        {
+            floatingTextManager.Show(msg, fontSize, color, position, motion, duration);
+        }
+        else
+        {
+            Debug.LogError("FloatingTextManager no está asignado.");
+        }
     }
 
     public int GetCurrentLevel()
@@ -48,7 +127,7 @@ public class GameManager : MonoBehaviour
         int r = 0;
         int add = 0;
 
-        while (experience >= add)   
+        while (experience >= add && r < xpTable.Count)
         {
             add += xpTable[r];
             r++;
@@ -65,7 +144,7 @@ public class GameManager : MonoBehaviour
         int r = 0;
         int xp = 0;
 
-        while (r < level)
+        while (r < level && r < xpTable.Count)
         {
             xp += xpTable[r];
             r++;
@@ -77,17 +156,18 @@ public class GameManager : MonoBehaviour
     {
         int currLevel = GetCurrentLevel();
         experience += xp;
-        if(currLevel < GetCurrentLevel())
+        if (currLevel < GetCurrentLevel())
         {
             OnLevelUp();
         }
+
         FindObjectOfType<PauseMenu>()?.UpdateMenu();
     }
 
     public void OnLevelUp()
     {
         Debug.Log("Level Up");
-        protagonist.OnLevelUp();
+        protagonist?.OnLevelUp();
     }
 
     public void SaveState()
@@ -110,6 +190,7 @@ public class GameManager : MonoBehaviour
 
         coins = int.Parse(data[1]);
         experience = int.Parse(data[2]);
+
         protagonist = FindObjectOfType<Protagonist>();
         if (protagonist == null)
         {
@@ -117,9 +198,10 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        if(GetCurrentLevel() != 1)
+        if (GetCurrentLevel() != 1)
             protagonist.SetLevel(GetCurrentLevel());
 
         Debug.Log("Load state");
     }
 }
+

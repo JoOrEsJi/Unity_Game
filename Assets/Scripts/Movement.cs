@@ -4,16 +4,19 @@ using UnityEngine;
 
 public abstract class Movement : Character
 {
+    private Vector3 originalSize;
+
     protected BoxCollider2D boxCollider;
     protected Vector3 moveDelta;
     protected RaycastHit2D hit;
-    protected float ySpeed = 0.75f;
-    protected float xSpeed = 0.75f;
+    public float ySpeed = 0.75f;
+    public float xSpeed = 0.75f;
 
     private Animator animator;
 
     protected virtual void Start()
     {
+        originalSize = transform.localScale;
         boxCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
     }
@@ -24,9 +27,9 @@ public abstract class Movement : Character
 
         //Si el input cambia de sentido, el sprite también
         if (moveDelta.x > 0)
-            transform.localScale = Vector3.one;
+            transform.localScale = originalSize;
         else if (moveDelta.x < 0)
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(originalSize.x * -1, originalSize.y, originalSize.z);
 
         moveDelta += pushDirection;
         pushDirection = Vector3.Lerp(pushDirection, Vector3.zero, pushRecoverySpeed);

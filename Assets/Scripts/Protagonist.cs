@@ -4,13 +4,34 @@ using UnityEngine;
 
 public class Protagonist : Movement
 {
+    private bool isAlive = true;
+    protected override void Death()
+    {
+        isAlive = false;
+
+        if (GameManager.instance.deathMenuAnimation != null && GameManager.instance.deathMenuAnimation.gameObject.activeInHierarchy)
+        {
+            GameManager.instance.deathMenuAnimation.SetTrigger("Showing");
+        }
+        else if (GameManager.instance.deathMenuAnimation != null)
+        {
+            GameManager.instance.deathMenuAnimation.gameObject.SetActive(true);
+            GameManager.instance.deathMenuAnimation.SetTrigger("Showing");
+        }
+        else
+        {
+            Debug.LogError("El Animator del menú de muerte no está asignado en el GameManager.");
+        }
+    }
 
     private void FixedUpdate()
     {
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
-
-        UpdateMotor(new Vector3(x, y, 0));
+        if (isAlive)
+        {
+            UpdateMotor(new Vector3(x, y, 0));
+        }
     }
 
     public void OnLevelUp()
