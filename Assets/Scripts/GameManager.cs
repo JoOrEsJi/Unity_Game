@@ -104,6 +104,29 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (SceneManager.GetActiveScene().name == "Game")
+            {
+                SceneManager.LoadScene("Menu");
+            }
+            else if (SceneManager.GetActiveScene().name == "Menu")
+            {
+                Application.Quit();
+            }
+            else if (SceneManager.GetActiveScene().name == "Lobby")
+            {
+                SceneManager.LoadScene("Menu");
+            }
+            else
+            {
+                Debug.Log("Botón de retroceso presionado en una escena no manejada.");
+            }
+        }
+    }
+
     public void Respawn()
     {
         deathMenuAnimation.SetTrigger("Hiding");
